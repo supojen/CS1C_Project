@@ -15,8 +15,14 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots:
+    void changePageToContactUs();
+    void changePageToHome();
+
 private:
     Ui::MainWindow *ui;
+
+    void setupConnections();
 };
 
 #endif // MAINWINDOW_H
