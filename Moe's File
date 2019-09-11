@@ -1,1 +1,152 @@
-Moe's file
+Baseline story: 
+As a customer I want to have a HELP BUTTON for easier navigation and friendly interface. 
+(1 S.P) 
+Assumptions: Create a drop-down menu through QT. Customer will click a button then the button will show all the features that can be done through our program. 
+Tasks: 
+Create the option menu through QT. 
+Through the design grid we are going to add buttons and arrows. 
+Test: 
+Add to our project. 
+Make sure it’s implementing correctly. 
+Definition of Done: 
+Peer review. 
+ Add it to the master file. 
+Comment code. 
+Allow the customer to use the software 
+ 
+Story line 1: 
+As an administrator, I would like to have an option to add and delete customers via program. 
+(13 SP) 
+Assumption: Implement a function to read the contents of the file and add/delete customers utilizing linked list. 
+ 
+Tasks:  
+Will be done on the application QT 
+Open the designated file containing the customer information 
+Read the file using ostream 
+Ask administrator to either add/delete customers 
+To add, create a pointer and set it equal to a new node 
+To delete, create a temp pointer variable and set it equal; ot a new node 
+ 
+Definition of done:  
+The admin is able to read the correct file 
+The customer does not have access to the file 
+The admin could visibly see the add/delete button that performs and functions well. 
+Double checking the plan and tasks 
+ 
+Story line 2: 
+As a customer, I would like to have an option to see a copy of the pamphlet so I could have an extra. (10 S.P) 
+Assumption: Create a function that copies over the exact contents that follows the pamphlet and sends it to the customer if he/she requests for one. 
+ 
+Tasks: 
+Will be done on the application QT 
+Create a push button to have the customer request for a pamphlet 
+Create a function that calls over the file in which the pamphlet is stored in 
+Ask the customer how much copies they desire stored in a char variable 
+Based on how much request forms customers puts in, embed the function inside of a for loop 
+Utilize a copy function to grab the contents of the pamphlet and store it in an array/vector 
+ 
+Story Line 3: 
+ As an administrator, I want to make sure that customers do not have the ability to view/print the customer list so that each customer’s information is not accessible to the public. (5 S.P) 
+Assumptions: Using the key concept of abstraction/information hiding, the view/print options will not be accessible by the customer, but only the admin.  
+Tasks:  
+ In the main page of QT, the view/print options will not be shown so that customers do not see/manipulate the customer list  
+ In the actual coding implementation itself, developers will have the ability to view/print the customer list in order to make sure that nothing unintentional happened to the list.  
+ To add the view/print methods within the code itself, developers will create methods to perform the intended goals  
+ A sample method will be to create an output file which will be the customer list, use a while loop to continue iterating through the list until the end of the file is reached and pointer != NULL, and print the customers’ attributes. (Using the concept of linked list) 
+Definition of Done:  
+Make sure the code adheres to the coding standard  
+ Make sure that the finished story meets the objectives  
+ Document the code to explain the meanings/implementations behind certain areas of code  
+Test the code so that it meets the required goals  
+ Confirm with the product owner to see if it works  
+ Gain approval from the customer, if the customer does not approve on certain aspects of the story, then refine it/meet the new objectives 
+ 
+Story Line 4: 
+ As an administrator, I want to update the customer list after a pamphlet has been sent to a perspective customer and reflect the fact that the pamphlet was sent. I want to achieve this goal so that there are no confusions/errors between the customer and the company. This will make sure that our product and code did what it was intended to do  (5 SP) 
+Assumptions: After a customer orders a certain product, the list will be modified such that the respective customer’s information will have the “sent” confirmation. A new message will be displayed next to the customer’s name such as “(sent)” to confirm that the pamphlet has been sent.  
+Tasks:  
+After the customer selects a product, the corresponding customer’s name will be tracked to confirm that the customer did, indeed, order the product and their pamphlet status will be set to yes  
+ The purchased method will return a Boolean value of true or false  
+ If purchased method returns True, then the list will be updated so that the word “sent” is next to the customer’s name  
+ Otherwise, nothing will happen to the list  
+Definition of Done:  
+Make sure the code adheres to the coding standard  
+ Make sure that the finished story meets the objectives  
+ Document the code to explain the meanings/implementations behind certain areas of code  
+ Test the code so that it meets the required goals  
+ Confirm with the product owner to see if it works  
+ Gain approval from the customer, if the customer does not approve on certain aspects of the story, then refine it/meet the new objectives 
+ 
+Story line 5: 
+As an administrator I would like the list to be sorted and arranged alphabetically to make it easy to find a certain customer. (8 S.P) 
+Assumptions: Before outputting the text, we are going to have a function that we arrange the customers by name for example Matt should be before Po. 
+Tasks: 
+We are going to be using a for loop right before outputting to the file to arrange the names. 
+Use the string Class. 
+Tests: 
+Add the code to the rest of the project. 
+Have a test file write a couple of names and output them to the file. 
+Definition of Done: 
+Get the code peer reviewed. 
+ Show it to the product owner. 
+ Make sure that the code is commented. 
+ 
+Story line 6: 
+ As an administrator I want to make sure that to create a separate list for key customer for marketing reasons. (5 S.P) 
+Assumptions: Before outputting the separate list. We are going to create a loop that will output a list separate if they are key customer. 
+Tasks: 
+Create a list using a loop that will read a string “Key”, if the customer is a key customer will add it to the List. 
+Then output the list to the output file. 
+Tests: 
+Test the loop using Eclipse. 
+Create a dummy txt file, read it and then output the list. 
+Check the output file and see if it is outputting the Key customers only. 
+Definition of Done: 
+Peer review it. 
+Make sure the loop and the program are working correctly. 
+Show it to the product owner. 
+ 
+Story line 7: 
+As an administrator I want to create a list that will have customer sorted alphabetically along with the products they ordered and the costs to be able to track the product sales. (5 S.P) 
+Assumption: Create a loop that will filter potential customers from actual customers and add the products they purchased and their costs. 
+Tasks: 
+Use a for loop that will read string “Purchased”. 
+After creating a list, the program will output the list to a file, sorted along with the products purchased. 
+Tests: 
+Add the code to the project. 
+Create a dummy file and test the loop. 
+Make sure the loop is implemented completely. 
+Definition of Done: 
+Peer reviewed 
+Make sure the code adheres to the coding standards. 
+Get the product owner verification. 
+Make sure the code is commented. 
+ 
+Story line 8: 
+As a developer I want to make the code readable and easy as possible for the team to be able to read and understand and make the whole process easier. (input file). (5 story point) 
+Assumptions: As a team we are going to create a function that is going to be responsible to open the text file and read all the data from it. 
+Tasks: 
+Create an input function that reads all the data and store it to the customer. 
+Test: 
+Use the function to read the input file and output it just to make sure it is reading it properly using eclipse. 
+Create a dummy file to read and output the data 
+Definition of done: 
+Add the code on GitHub. 
+Add the code to the rest of the project. 
+Function should be commented. 
+Reviewed by the team. 
+Make sure the implementation is correct. 
+Story Line 9: 
+As a user I want to make the code readable and easy as possible for the team to be able to read and understand (output file). (5 story point) 
+Assumptions: Program reads from a customer file that keeps track of which companies have already received the pamphlet. Create the output file which contains all the customers information. 
+Tasks: 
+Open the output file. 
+Use a while loop to read the file until the end. 
+Perform certain functions to get the data. 
+Tests: 
+Add it to the rest of the project. 
+Run that function by itself. 
+Definition of Done 
+Get it peer reviewed. 
+Confirm with the product owner. 
+Get feedback from the customer. 
