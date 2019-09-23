@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QObject>
 
 namespace Ui {
 class MainWindow;
@@ -16,13 +17,18 @@ public:
     ~MainWindow();
 
 public slots:
-    void changePageToContactUs();
+    void changepageToContactUs();
     void changePageToHome();
+    void setupconnections();
+    void changepagetobuynow();
+    void changetocartpage();
+    void changetoGuaranteepage();
+    void changetocustomerreviewspage();
+    void changetohelppage();
+
 
 private:
     Ui::MainWindow *ui;
-
-    void setupConnections();
 };
 
 #endif // MAINWINDOW_H
