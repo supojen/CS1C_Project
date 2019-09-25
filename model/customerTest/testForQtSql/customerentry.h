@@ -50,6 +50,9 @@ public:
     bool getGetPamphlet() const;
     void setGetPamphlet(bool getPamphlet);
 
+    QStringList getProducts() const;
+    void setProducts(const QStringList &products);
+
 signals:
 
     void nameChanged();

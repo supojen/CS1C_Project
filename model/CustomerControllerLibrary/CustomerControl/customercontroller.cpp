@@ -4,15 +4,14 @@ CustomerController::CustomerController(QObject *parent) : QObject(parent)
 {
     // Connecting to database
     m_database = QSqlDatabase::addDatabase("QSQLITE");
-    m_database.setDatabaseName("./customer.db");
+    //QString path = QDir::currentPath() + "customer.db";
+    m_database.setDatabaseName("/Users/supojen/customer.db");
     if(!m_database.open())
     {
         qDebug() << "problem opening database" << endl;
     }
 
 }
-
-
 
 
 /**
@@ -22,10 +21,11 @@ CustomerController::CustomerController(QObject *parent) : QObject(parent)
 void CustomerController::createTable()
 {
 
+
     // About creating the table
     QString query =
-    "create table customer("
-    "id              integer prinary key  autoincrement not null,  "
+    "create table customer(                                        "
+    "id              integer primary key  autoincrement not null,  "
     "name            varchar(50),                                  "
     "address         varchar(50),                                  "
     "username        varchar(50) not null unique,                  "
@@ -37,7 +37,7 @@ void CustomerController::createTable()
     "product         varchar(100),                                 "
     "maintenance     varchar(50),                                  "
     "recievePamphlet boolean                                       "
-    ");";
+    ");                                                            ";
 
     QSqlQuery qry;
     if(!qry.exec(query))
@@ -48,47 +48,75 @@ void CustomerController::createTable()
 
 }
 
-QList<CustomerEntry> CustomerController::loadData()
+/**
+ * @brief CustomerController::loadEntries
+ *      Load the customer information from database to QSqlQueryModel.
+ * @return
+ *      QSqlQueyModel that contain the customers' informations.
+ */
+QSqlQueryModel *CustomerController::loadEntries()
 {
-    QSqlQuery qry;
-    QSqlQueryModel model;
+    QSqlQueryModel* model = new QSqlQueryModel();
 
+    QSqlQuery qry;
     qry.prepare("select * from customer;");
     if(!qry.exec())
     {
-        qDebug() <<"error loading values to db" << endl;
+        qDebug() <<"error Loading values to db" << endl;
+
     }
 
-    model.setQuery(qry);
+    model->setQuery(qry);
 
-
+    return model;
 }
 
-CustomerEntry CustomerController::loadEntry(QString name,
-                                            QString address,
-                                            QString username,
-                                            QString password,
-                                            QString credit,
-                                            QString phone,
-                                            QString rating,
-                                            QString key,
-                                            QList<QString> products,
-                                            QString maintainPlan,
-                                            bool getPamphlet)
-{
-    CustomerEntry entry;
 
-    entry.setName(name);
-    entry.setAddress(address);
-    entry.setUsername(username);
-    entry.setPassword(password);
-    entry.setCredit(credit);
-    entry.setPhone(phone);
-    entry.setRating(rating);
-    entry.setKey(key);
-    entry.setProducts();
-    entry.setMaintainPlan(maintainPlan);
-    entry.setGetPamphlet(getPamphlet);
+/**
+ * @brief CustomerController::getEntryFromName
+ *          This fuction load the customer information into the
+ *          CustomerEntry object.
+ * @param name
+ *          Representing the customer's name which you want to load.
+ * @return
+ *          CustomerEntry object.
+ */
+CustomerEntry *CustomerController::getEntryFromName(QString name)
+{
+    CustomerEntry* entry = new CustomerEntry();
+
+    QSqlTableModel model;
+    model.setTable("customer");
+    QString condition = "name = \'" + name + "\';";
+    model.setFilter(condition);
+    model.select();
+
+    entry->setName(model.record(0).value("name").toString());
+    entry->setAddress(model.record(0).value("address").toString());
+    entry->setUsername(model.record(0).value("username").toString());
+    entry->setPassword(model.record(0).value("password").toString());
+    entry->setCredit(model.record(0).value("credit").toString());
+    entry->setPhone(model.record(0).value("phone").toString());
+    entry->setRating(model.record(0).value("rating").toString());
+    entry->setKey(model.record(0).value("key").toString());
+    entry->setProducts(model.record(0).value("product").toString().split(","));
+    entry->setMaintainPlan(model.record(0).value("maintenance").toString());
+    entry->setGetPamphlet(model.record(0).value("recievePamphlet").toBool());
+
+
+    return entry;
+}
+
+
+QString CustomerController::getCustomerNameFromQModelIndex(const QModelIndex &index)
+{
+    QSqlTableModel model;
+    model.setTable("customer");
+    model.select();
+    QString nameOfCustomer = model.record(index.row()).value("name").toString();
+
+
+    return nameOfCustomer;
 }
 
 
@@ -117,10 +145,12 @@ void CustomerController::createEntry(QString name,
                                      QString phone,
                                      QString rating,
                                      QString key,
-                                     QList<QString> products,
+                                     QStringList products,
                                      QString maintainPlan,
                                      bool getPamphlet)
 {
+
+
     QSqlQuery qry;
     qry.prepare("insert into customer (          "
                 "name,                           "
@@ -133,7 +163,7 @@ void CustomerController::createEntry(QString name,
                 "key,                            "
                 "product,                        "
                 "maintenance,                    "
-                "recievePamhlet)                 "
+                "recievePamphlet)                 "
                 "values(?,?,?,?,?,?,?,?,?,?,?);  "
                 );
     qry.addBindValue(name);
@@ -146,12 +176,16 @@ void CustomerController::createEntry(QString name,
     qry.addBindValue(key);
     qry.addBindValue(convertProductsToString(products));
     qry.addBindValue(maintainPlan);
-    qry.addBindValue(getPamphlet);
+    if(getPamphlet)
+        qry.addBindValue("true");
+    else
+        qry.addBindValue("false");
 
     if(!qry.exec())
     {
-        qDebug() <<"error adding values to db" << endl;
+         qDebug() << "Error adding data" << endl;
     }
+
 
 }
 
@@ -161,6 +195,7 @@ void CustomerController::createEntry(QString name,
  * @brief CustomerController::deleteEntry
  *          This function will help us delete the entry
  * @param name
+ *          Representing the customer's name which you want to delete.
  */
 void CustomerController::deleteEntry(QString name)
 {
@@ -177,7 +212,32 @@ void CustomerController::deleteEntry(QString name)
 
 }
 
-void CustomerController::updateEntry(QString name, QString address, QString username, QString password, QString credit, QString phone, QString rating, QString key, QList<QString> products, QString maintainPlan, bool getPamphlet)
+/**
+ * @brief CustomerController::updateEntry
+ *      This function update the customer's informations.
+ * @param name
+ * @param address
+ * @param username
+ * @param password
+ * @param credit
+ * @param phone
+ * @param rating
+ * @param key
+ * @param products
+ * @param maintainPlan
+ * @param getPamphlet
+ */
+void CustomerController::updateEntry(QString name,
+                                     QString address,
+                                     QString username,
+                                     QString password,
+                                     QString credit,
+                                     QString phone,
+                                     QString rating,
+                                     QString key,
+                                     QStringList products,
+                                     QString maintainPlan,
+                                     bool getPamphlet)
 {
     QSqlQuery qry;
     qry.prepare("update customer set  "
@@ -191,7 +251,8 @@ void CustomerController::updateEntry(QString name, QString address, QString user
                 "key             = ?, "
                 "product         = ?, "
                 "maintenance     = ?, "
-                "recievePamhlet  = ?; "
+                "recievePamphlet  = ?  "
+                "where name = ?      ;"
                      );
 
     qry.addBindValue(name);
@@ -204,33 +265,50 @@ void CustomerController::updateEntry(QString name, QString address, QString user
     qry.addBindValue(key);
     qry.addBindValue(convertProductsToString(products));
     qry.addBindValue(maintainPlan);
-    qry.addBindValue(getPamphlet);
+    if(getPamphlet)
+        qry.addBindValue("true");
+    else
+        qry.addBindValue("false");
+    qry.addBindValue(name);
 
 
     if(!qry.exec())
     {
-        qDebug() <<"error updating values to db" << endl;
+        //qDebug() <<"error updating values to db" << endl;
+        qDebug() << qry.lastError().text() << endl;
 
     }
+
 
 }
 
 
-
-QString CustomerController::convertProductsToString(QList<QString> products)
+/**
+ * @brief CustomerController::convertProductsToString
+ *      This fuction convert QListString to QString.
+ * @param products
+ * @return
+ */
+QString CustomerController::convertProductsToString(QStringList products)
 {
     QString result;
 
-    for(auto & item: products)
-    {
-        result += item;
-        result += ",";
-    }
+    result = products.join(",");
 
     return result;
 }
 
-QList<QString> CustomerController::convertProductsFromString(QString productsStr)
+/**
+ * @brief CustomerController::convertProductsToString
+ *      This fuction convert QString to QListString.
+ * @param products
+ * @return
+ */
+QStringList CustomerController::convertProductsFromString(QString productsStr)
 {
+    QStringList result;
 
+    result = productsStr.split(",");
+
+    return result;
 }

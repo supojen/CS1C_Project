@@ -106,3 +106,12 @@ void CustomerEntry::setGetPamphlet(bool getPamphlet)
     m_getPamphlet = getPamphlet;
 }
 
+QStringList CustomerEntry::getProducts() const
+{
+    return m_products;
+}
+
+void CustomerEntry::setProducts(const QStringList &products)
+{
+    m_products = products;
+}

@@ -4,39 +4,30 @@
 #include <QObject>
 #include <QtSql>
 #include "customerentry.h"
-/*
-QString          m_name;
-QString          m_address;
-QString          m_username;
-QString          m_password;
-QString          m_credit;
-QString          m_phone;
-QString          m_rating;
-QString          m_key;
-QList<QString>   m_products;
-QString          m_maintainPlan;
-bool             m_getPamphlet;
-*/
+
+
 class CustomerController : public QObject
 {
     Q_OBJECT
 public:
     explicit CustomerController(QObject *parent = nullptr);
 
+    //* This Function help us to create an customer table *//
     void static createTable();
-    QList<CustomerEntry> loadData();
-    CustomerEntry        loadEntry(QString        name,
-                                   QString        address,
-                                   QString        username,
-                                   QString        password,
-                                   QString        credit,
-                                   QString        phone,
-                                   QString        rating,
-                                   QString        key,
-                                   QList<QString> products,
-                                   QString        maintainPlan,
-                                   bool           getPamphlet);
 
+    //*********************** READ ***********************//                                            *//
+    //* Read the customer information from the database. *//
+    //* And store them in QSqlQueryModel* object.        *//
+    QSqlQueryModel* loadEntries();
+    //* Read one customer information from the database, *//
+    //* according to the giving name.                    *//
+    //* And store them in CustomerEntry* object.         *//
+    CustomerEntry* getEntryFromName(QString name);
+    //* Read the customer name from the database,        *//
+    //* according to QModelIndex object                  *//
+    QString getCustomerNameFromQModelIndex(const QModelIndex &index);
+
+    //********************** CREATE **********************//
     void createEntry(QString        name,
                      QString        address,
                      QString        username,
@@ -45,10 +36,14 @@ public:
                      QString        phone,
                      QString        rating,
                      QString        key,
-                     QList<QString> products,
+                     QStringList products,
                      QString        maintainPlan,
                      bool           getPamphlet);
+
+    //********************** DELETE **********************//
     void deleteEntry(QString name);
+
+    //********************** UPDATE **********************//
     void updateEntry(QString        name,
                      QString        address,
                      QString        username,
@@ -57,7 +52,7 @@ public:
                      QString        phone,
                      QString        rating,
                      QString        key,
-                     QList<QString> products,
+                     QStringList products,
                      QString        maintainPlan,
                      bool           getPamphlet);
 
@@ -69,8 +64,9 @@ private:
     QSqlDatabase         m_database;
     QList<CustomerEntry> m_entries;
 
-    QString convertProductsToString(QList<QString> products);
-    QList<QString> convertProductsFromString(QString productsStr);
+    //******************* Helper Function ********************//
+    QString convertProductsToString(QStringList products);
+    QStringList convertProductsFromString(QString productsStr);
 };
 
 
