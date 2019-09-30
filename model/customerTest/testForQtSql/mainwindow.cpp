@@ -8,6 +8,7 @@ MainWindow::MainWindow(CustomerController* controller,QWidget *parent) :
 {
     ui->setupUi(this);
     settingConnection();
+    //m_controller->createTable();
 }
 
 MainWindow::~MainWindow()
@@ -18,6 +19,22 @@ MainWindow::~MainWindow()
 
 void MainWindow::createEntry()
 {
+    QStringList products;
+    if(ui->checkBoxStandardAdd->isChecked())
+        products.append("Sta");
+    if(ui->checkBoxPremiemAdd->isChecked())
+        products.append("Pre");
+    if(ui->checkBoxProAdd->isChecked())
+        products.append("Pro");
+
+    QString key;
+    if(ui->radioButtonKeyCreate->isChecked())
+        key = "Key";
+    else
+        key = "Not Key";
+
+
+
     m_controller->createEntry(
                      ui->textName->toPlainText(),
                      ui->textAddress->toPlainText(),
@@ -26,8 +43,8 @@ void MainWindow::createEntry()
                      "00",
                      ui->textPhone->toPlainText(),
                      "00",
-                     "00",
-                     QStringList(),
+                     key,
+                     products,
                      "",
                 false);
 }
@@ -57,12 +74,32 @@ void MainWindow::deleteEntry()
 */
 void MainWindow::updateEntry()
 {
-    //ui->textAddressListPage->toPlainText();
-    //ui->textRatingListPage->toPlainText();
-    //ui->textKeyListPage->toPlainText();
 
     CustomerEntry *entry;
     entry = m_controller->getEntryFromName(ui->labelCustomerName->text());
+
+    // About Products
+    QStringList products;
+    if(ui->checkBoxStandardUpdate->isChecked())
+        products.append("Sta");
+    else
+        products.removeOne("Sta");
+    if(ui->checkBoxPremiemUpdate->isChecked())
+        products.append("Pre");
+    else
+        products.removeOne("Pre");
+    if(ui->checkBoxProUpdate->isChecked())
+        products.append("Pro");
+    else
+        products.removeOne("Pro");
+
+    //About Key
+    QString key;
+    if(ui->radioButtonKeyUpdate->isChecked())
+        key = "Key";
+    else
+        key = "Not Key";
+
     m_controller->updateEntry(entry->getName(),
                               ui->textAddressListPage->toPlainText(),
                               entry->getUsername(),
@@ -70,8 +107,8 @@ void MainWindow::updateEntry()
                               entry->getCredit(),
                               entry->getPhone(),
                               ui->textRatingListPage->toPlainText(),
-                              ui->textKeyListPage->toPlainText(),
-                              entry->getProducts(),
+                              key,
+                              products,
                               entry->getMaintainPlan(),
                               entry->getGetPamphlet());
     showCustomerList(m_controller->loadEntries());
@@ -104,6 +141,9 @@ void MainWindow::settingConnection()
 {
     connect(ui->btnListPage,&QPushButton::clicked,
             this,&MainWindow::changePageListPage);
+
+    connect(ui->btnListPage_KeyMember,&QPushButton::clicked,
+            this,&MainWindow::on_btnListPage_KeyMember_clicked);
 
     connect(ui->btncreatePage,&QPushButton::clicked,
             this,&MainWindow::changePageCreatePage);
@@ -143,5 +183,35 @@ void MainWindow::on_tableView_activated(const QModelIndex &index)
     ui->labelCustomerName->setText(entry->getName());
     ui->textAddressListPage->setPlainText(entry->getAddress());
     ui->textRatingListPage->setPlainText(entry->getRating());
-    ui->textKeyListPage->setPlainText(entry->getKey());
+
+
+    // About Products
+    QStringList products = entry->getProducts();
+    if(products.contains("Sta"))
+        ui->checkBoxStandardUpdate->setChecked(true);
+    else
+        ui->checkBoxStandardUpdate->setChecked(false);
+
+    if(products.contains("Pre"))
+        ui->checkBoxPremiemUpdate->setChecked(true);
+    else
+        ui->checkBoxPremiemUpdate->setChecked(false);
+    if(products.contains("Pro"))
+        ui->checkBoxProUpdate->setChecked(true);
+    else
+        ui->checkBoxProUpdate->setChecked(false);
+
+    // About Key
+    if(entry->getKey() == "Key")
+        ui->radioButtonKeyUpdate->setChecked(true);
+    else
+        ui->radioButtonKeyUpdate->setChecked(false);
+
+
+}
+
+void MainWindow::on_btnListPage_KeyMember_clicked()
+{
+    showCustomerList(m_controller->loadKeyEntries());
+    ui->stackedWidget->setCurrentWidget(ui->PageList);
 }

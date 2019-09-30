@@ -11,13 +11,16 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTableView>
@@ -36,28 +39,36 @@ public:
     QStackedWidget *stackedWidget;
     QWidget *PageCreate;
     QGridLayout *gridLayout_2;
-    QHBoxLayout *horizontalLayout_6;
-    QLabel *label_5;
-    QTextEdit *textCredit;
-    QHBoxLayout *horizontalLayout_3;
-    QLabel *label_2;
-    QTextEdit *textUsername;
     QHBoxLayout *horizontalLayout_4;
     QLabel *label_3;
     QTextEdit *textPassword;
     QHBoxLayout *horizontalLayout;
     QLabel *label_10;
     QTextEdit *textName;
+    QHBoxLayout *horizontalLayout_11;
+    QPushButton *btnConfirm;
+    QPushButton *btnListPage_KeyMember;
+    QPushButton *btnListPage;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *label_2;
+    QTextEdit *textUsername;
     QHBoxLayout *horizontalLayout_5;
     QLabel *label_4;
     QTextEdit *textPhone;
-    QPushButton *btnListPage;
+    QGroupBox *groupBox;
+    QHBoxLayout *horizontalLayout_12;
+    QCheckBox *checkBoxStandardAdd;
+    QCheckBox *checkBoxPremiemAdd;
+    QCheckBox *checkBoxProAdd;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label;
     QTextEdit *textAddress;
-    QPushButton *btnConfirm;
+    QHBoxLayout *horizontalLayout_6;
+    QLabel *label_5;
+    QTextEdit *textCredit;
+    QRadioButton *radioButtonKeyCreate;
     QWidget *PageList;
-    QWidget *layoutWidget;
+    QGridLayout *gridLayout_4;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_7;
     QLabel *labelAddressListPage;
@@ -66,19 +77,20 @@ public:
     QLabel *labelRatingListPage;
     QTextEdit *textRatingListPage;
     QHBoxLayout *horizontalLayout_9;
-    QLabel *labelKeyListPage;
-    QTextEdit *textKeyListPage;
-    QWidget *layoutWidget1;
-    QHBoxLayout *horizontalLayout_10;
-    QPushButton *btncreatePage;
-    QPushButton *btnUpdate;
     QPushButton *btnDelete;
-    QWidget *layoutWidget2;
+    QPushButton *btnUpdate;
+    QLabel *labelCustomerName;
+    QGroupBox *groupBox_2;
+    QHBoxLayout *horizontalLayout_13;
+    QCheckBox *checkBoxStandardUpdate;
+    QCheckBox *checkBoxPremiemUpdate;
+    QCheckBox *checkBoxProUpdate;
+    QPushButton *btncreatePage;
     QGridLayout *gridLayout_3;
     QTableView *tableView;
     QSpacerItem *verticalSpacer;
     QSpacerItem *horizontalSpacer;
-    QLabel *labelCustomerName;
+    QRadioButton *radioButtonKeyUpdate;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
 
@@ -101,38 +113,6 @@ public:
         gridLayout_2->setSpacing(6);
         gridLayout_2->setContentsMargins(11, 11, 11, 11);
         gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
-        horizontalLayout_6 = new QHBoxLayout();
-        horizontalLayout_6->setSpacing(6);
-        horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
-        label_5 = new QLabel(PageCreate);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
-
-        horizontalLayout_6->addWidget(label_5);
-
-        textCredit = new QTextEdit(PageCreate);
-        textCredit->setObjectName(QString::fromUtf8("textCredit"));
-
-        horizontalLayout_6->addWidget(textCredit);
-
-
-        gridLayout_2->addLayout(horizontalLayout_6, 5, 0, 1, 1);
-
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setSpacing(6);
-        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-        label_2 = new QLabel(PageCreate);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-
-        horizontalLayout_3->addWidget(label_2);
-
-        textUsername = new QTextEdit(PageCreate);
-        textUsername->setObjectName(QString::fromUtf8("textUsername"));
-
-        horizontalLayout_3->addWidget(textUsername);
-
-
-        gridLayout_2->addLayout(horizontalLayout_3, 2, 0, 1, 1);
-
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
@@ -165,6 +145,43 @@ public:
 
         gridLayout_2->addLayout(horizontalLayout, 0, 0, 1, 1);
 
+        horizontalLayout_11 = new QHBoxLayout();
+        horizontalLayout_11->setSpacing(6);
+        horizontalLayout_11->setObjectName(QString::fromUtf8("horizontalLayout_11"));
+        btnConfirm = new QPushButton(PageCreate);
+        btnConfirm->setObjectName(QString::fromUtf8("btnConfirm"));
+
+        horizontalLayout_11->addWidget(btnConfirm);
+
+        btnListPage_KeyMember = new QPushButton(PageCreate);
+        btnListPage_KeyMember->setObjectName(QString::fromUtf8("btnListPage_KeyMember"));
+
+        horizontalLayout_11->addWidget(btnListPage_KeyMember);
+
+        btnListPage = new QPushButton(PageCreate);
+        btnListPage->setObjectName(QString::fromUtf8("btnListPage"));
+
+        horizontalLayout_11->addWidget(btnListPage);
+
+
+        gridLayout_2->addLayout(horizontalLayout_11, 8, 0, 1, 1);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setSpacing(6);
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        label_2 = new QLabel(PageCreate);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+
+        horizontalLayout_3->addWidget(label_2);
+
+        textUsername = new QTextEdit(PageCreate);
+        textUsername->setObjectName(QString::fromUtf8("textUsername"));
+
+        horizontalLayout_3->addWidget(textUsername);
+
+
+        gridLayout_2->addLayout(horizontalLayout_3, 2, 0, 1, 1);
+
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setSpacing(6);
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
@@ -181,10 +198,29 @@ public:
 
         gridLayout_2->addLayout(horizontalLayout_5, 4, 0, 1, 1);
 
-        btnListPage = new QPushButton(PageCreate);
-        btnListPage->setObjectName(QString::fromUtf8("btnListPage"));
+        groupBox = new QGroupBox(PageCreate);
+        groupBox->setObjectName(QString::fromUtf8("groupBox"));
+        horizontalLayout_12 = new QHBoxLayout(groupBox);
+        horizontalLayout_12->setSpacing(6);
+        horizontalLayout_12->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_12->setObjectName(QString::fromUtf8("horizontalLayout_12"));
+        checkBoxStandardAdd = new QCheckBox(groupBox);
+        checkBoxStandardAdd->setObjectName(QString::fromUtf8("checkBoxStandardAdd"));
 
-        gridLayout_2->addWidget(btnListPage, 6, 0, 1, 1);
+        horizontalLayout_12->addWidget(checkBoxStandardAdd);
+
+        checkBoxPremiemAdd = new QCheckBox(groupBox);
+        checkBoxPremiemAdd->setObjectName(QString::fromUtf8("checkBoxPremiemAdd"));
+
+        horizontalLayout_12->addWidget(checkBoxPremiemAdd);
+
+        checkBoxProAdd = new QCheckBox(groupBox);
+        checkBoxProAdd->setObjectName(QString::fromUtf8("checkBoxProAdd"));
+
+        horizontalLayout_12->addWidget(checkBoxProAdd);
+
+
+        gridLayout_2->addWidget(groupBox, 6, 0, 1, 1);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
@@ -202,31 +238,46 @@ public:
 
         gridLayout_2->addLayout(horizontalLayout_2, 1, 0, 1, 1);
 
-        btnConfirm = new QPushButton(PageCreate);
-        btnConfirm->setObjectName(QString::fromUtf8("btnConfirm"));
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setSpacing(6);
+        horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
+        label_5 = new QLabel(PageCreate);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
 
-        gridLayout_2->addWidget(btnConfirm, 7, 0, 1, 1);
+        horizontalLayout_6->addWidget(label_5);
+
+        textCredit = new QTextEdit(PageCreate);
+        textCredit->setObjectName(QString::fromUtf8("textCredit"));
+
+        horizontalLayout_6->addWidget(textCredit);
+
+
+        gridLayout_2->addLayout(horizontalLayout_6, 5, 0, 1, 1);
+
+        radioButtonKeyCreate = new QRadioButton(PageCreate);
+        radioButtonKeyCreate->setObjectName(QString::fromUtf8("radioButtonKeyCreate"));
+
+        gridLayout_2->addWidget(radioButtonKeyCreate, 7, 0, 1, 1);
 
         stackedWidget->addWidget(PageCreate);
         PageList = new QWidget();
         PageList->setObjectName(QString::fromUtf8("PageList"));
-        layoutWidget = new QWidget(PageList);
-        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(0, 340, 591, 250));
-        verticalLayout = new QVBoxLayout(layoutWidget);
+        gridLayout_4 = new QGridLayout(PageList);
+        gridLayout_4->setSpacing(6);
+        gridLayout_4->setContentsMargins(11, 11, 11, 11);
+        gridLayout_4->setObjectName(QString::fromUtf8("gridLayout_4"));
+        verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
-        verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setSpacing(6);
         horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
-        labelAddressListPage = new QLabel(layoutWidget);
+        labelAddressListPage = new QLabel(PageList);
         labelAddressListPage->setObjectName(QString::fromUtf8("labelAddressListPage"));
 
         horizontalLayout_7->addWidget(labelAddressListPage);
 
-        textAddressListPage = new QTextEdit(layoutWidget);
+        textAddressListPage = new QTextEdit(PageList);
         textAddressListPage->setObjectName(QString::fromUtf8("textAddressListPage"));
 
         horizontalLayout_7->addWidget(textAddressListPage);
@@ -237,12 +288,12 @@ public:
         horizontalLayout_8 = new QHBoxLayout();
         horizontalLayout_8->setSpacing(6);
         horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
-        labelRatingListPage = new QLabel(layoutWidget);
+        labelRatingListPage = new QLabel(PageList);
         labelRatingListPage->setObjectName(QString::fromUtf8("labelRatingListPage"));
 
         horizontalLayout_8->addWidget(labelRatingListPage);
 
-        textRatingListPage = new QTextEdit(layoutWidget);
+        textRatingListPage = new QTextEdit(PageList);
         textRatingListPage->setObjectName(QString::fromUtf8("textRatingListPage"));
 
         horizontalLayout_8->addWidget(textRatingListPage);
@@ -253,52 +304,68 @@ public:
         horizontalLayout_9 = new QHBoxLayout();
         horizontalLayout_9->setSpacing(6);
         horizontalLayout_9->setObjectName(QString::fromUtf8("horizontalLayout_9"));
-        labelKeyListPage = new QLabel(layoutWidget);
-        labelKeyListPage->setObjectName(QString::fromUtf8("labelKeyListPage"));
-
-        horizontalLayout_9->addWidget(labelKeyListPage);
-
-        textKeyListPage = new QTextEdit(layoutWidget);
-        textKeyListPage->setObjectName(QString::fromUtf8("textKeyListPage"));
-
-        horizontalLayout_9->addWidget(textKeyListPage);
-
 
         verticalLayout->addLayout(horizontalLayout_9);
 
-        layoutWidget1 = new QWidget(PageList);
-        layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(0, 600, 591, 41));
-        horizontalLayout_10 = new QHBoxLayout(layoutWidget1);
-        horizontalLayout_10->setSpacing(6);
-        horizontalLayout_10->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
-        horizontalLayout_10->setContentsMargins(0, 0, 0, 0);
-        btncreatePage = new QPushButton(layoutWidget1);
-        btncreatePage->setObjectName(QString::fromUtf8("btncreatePage"));
 
-        horizontalLayout_10->addWidget(btncreatePage);
+        gridLayout_4->addLayout(verticalLayout, 5, 0, 1, 3);
 
-        btnUpdate = new QPushButton(layoutWidget1);
-        btnUpdate->setObjectName(QString::fromUtf8("btnUpdate"));
-
-        horizontalLayout_10->addWidget(btnUpdate);
-
-        btnDelete = new QPushButton(layoutWidget1);
+        btnDelete = new QPushButton(PageList);
         btnDelete->setObjectName(QString::fromUtf8("btnDelete"));
 
-        horizontalLayout_10->addWidget(btnDelete);
+        gridLayout_4->addWidget(btnDelete, 6, 1, 1, 1);
 
-        layoutWidget2 = new QWidget(PageList);
-        layoutWidget2->setObjectName(QString::fromUtf8("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(2, 12, 591, 291));
-        gridLayout_3 = new QGridLayout(layoutWidget2);
+        btnUpdate = new QPushButton(PageList);
+        btnUpdate->setObjectName(QString::fromUtf8("btnUpdate"));
+
+        gridLayout_4->addWidget(btnUpdate, 6, 2, 1, 1);
+
+        labelCustomerName = new QLabel(PageList);
+        labelCustomerName->setObjectName(QString::fromUtf8("labelCustomerName"));
+
+        gridLayout_4->addWidget(labelCustomerName, 2, 0, 1, 3);
+
+        groupBox_2 = new QGroupBox(PageList);
+        groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
+        QFont font;
+        font.setFamily(QString::fromUtf8("Comic Sans MS"));
+        font.setPointSize(14);
+        font.setBold(true);
+        font.setWeight(75);
+        groupBox_2->setFont(font);
+        horizontalLayout_13 = new QHBoxLayout(groupBox_2);
+        horizontalLayout_13->setSpacing(6);
+        horizontalLayout_13->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_13->setObjectName(QString::fromUtf8("horizontalLayout_13"));
+        checkBoxStandardUpdate = new QCheckBox(groupBox_2);
+        checkBoxStandardUpdate->setObjectName(QString::fromUtf8("checkBoxStandardUpdate"));
+
+        horizontalLayout_13->addWidget(checkBoxStandardUpdate);
+
+        checkBoxPremiemUpdate = new QCheckBox(groupBox_2);
+        checkBoxPremiemUpdate->setObjectName(QString::fromUtf8("checkBoxPremiemUpdate"));
+
+        horizontalLayout_13->addWidget(checkBoxPremiemUpdate);
+
+        checkBoxProUpdate = new QCheckBox(groupBox_2);
+        checkBoxProUpdate->setObjectName(QString::fromUtf8("checkBoxProUpdate"));
+
+        horizontalLayout_13->addWidget(checkBoxProUpdate);
+
+
+        gridLayout_4->addWidget(groupBox_2, 3, 0, 1, 3);
+
+        btncreatePage = new QPushButton(PageList);
+        btncreatePage->setObjectName(QString::fromUtf8("btncreatePage"));
+
+        gridLayout_4->addWidget(btncreatePage, 6, 0, 1, 1);
+
+        gridLayout_3 = new QGridLayout();
         gridLayout_3->setSpacing(6);
-        gridLayout_3->setContentsMargins(11, 11, 11, 11);
         gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
-        gridLayout_3->setContentsMargins(0, 0, 0, 0);
-        tableView = new QTableView(layoutWidget2);
+        tableView = new QTableView(PageList);
         tableView->setObjectName(QString::fromUtf8("tableView"));
+        tableView->setMinimumSize(QSize(50, 200));
 
         gridLayout_3->addWidget(tableView, 0, 0, 2, 2);
 
@@ -310,12 +377,17 @@ public:
 
         gridLayout_3->addItem(horizontalSpacer, 1, 1, 1, 1);
 
-        labelCustomerName = new QLabel(PageList);
-        labelCustomerName->setObjectName(QString::fromUtf8("labelCustomerName"));
-        labelCustomerName->setGeometry(QRect(10, 310, 71, 16));
+
+        gridLayout_4->addLayout(gridLayout_3, 0, 0, 2, 3);
+
+        radioButtonKeyUpdate = new QRadioButton(PageList);
+        radioButtonKeyUpdate->setObjectName(QString::fromUtf8("radioButtonKeyUpdate"));
+
+        gridLayout_4->addWidget(radioButtonKeyUpdate, 4, 0, 1, 1);
+
         stackedWidget->addWidget(PageList);
 
-        gridLayout->addWidget(stackedWidget, 0, 0, 1, 1);
+        gridLayout->addWidget(stackedWidget, 0, 1, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -328,27 +400,40 @@ public:
 
         retranslateUi(MainWindow);
 
+        stackedWidget->setCurrentIndex(1);
+
+
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
 
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
-        label_5->setText(QApplication::translate("MainWindow", "credit         ", nullptr));
-        label_2->setText(QApplication::translate("MainWindow", "username  ", nullptr));
         label_3->setText(QApplication::translate("MainWindow", "password   ", nullptr));
         label_10->setText(QApplication::translate("MainWindow", "Name         ", nullptr));
-        label_4->setText(QApplication::translate("MainWindow", "phone        ", nullptr));
-        btnListPage->setText(QApplication::translate("MainWindow", "List All", nullptr));
-        label->setText(QApplication::translate("MainWindow", "Address     ", nullptr));
         btnConfirm->setText(QApplication::translate("MainWindow", "Confirm", nullptr));
+        btnListPage_KeyMember->setText(QApplication::translate("MainWindow", "List Key Member Only", nullptr));
+        btnListPage->setText(QApplication::translate("MainWindow", "List All", nullptr));
+        label_2->setText(QApplication::translate("MainWindow", "username  ", nullptr));
+        label_4->setText(QApplication::translate("MainWindow", "phone        ", nullptr));
+        groupBox->setTitle(QApplication::translate("MainWindow", "products", nullptr));
+        checkBoxStandardAdd->setText(QApplication::translate("MainWindow", "standard", nullptr));
+        checkBoxPremiemAdd->setText(QApplication::translate("MainWindow", "premiem", nullptr));
+        checkBoxProAdd->setText(QApplication::translate("MainWindow", "pro", nullptr));
+        label->setText(QApplication::translate("MainWindow", "Address     ", nullptr));
+        label_5->setText(QApplication::translate("MainWindow", "credit         ", nullptr));
+        radioButtonKeyCreate->setText(QApplication::translate("MainWindow", "Key Member", nullptr));
         labelAddressListPage->setText(QApplication::translate("MainWindow", "Address", nullptr));
         labelRatingListPage->setText(QApplication::translate("MainWindow", "rating    ", nullptr));
-        labelKeyListPage->setText(QApplication::translate("MainWindow", "key        ", nullptr));
-        btncreatePage->setText(QApplication::translate("MainWindow", "Back", nullptr));
-        btnUpdate->setText(QApplication::translate("MainWindow", "Update", nullptr));
         btnDelete->setText(QApplication::translate("MainWindow", "Delete", nullptr));
-        labelCustomerName->setText(QString());
+        btnUpdate->setText(QApplication::translate("MainWindow", "Update", nullptr));
+        labelCustomerName->setText(QApplication::translate("MainWindow", "Name", nullptr));
+        groupBox_2->setTitle(QApplication::translate("MainWindow", "Products", nullptr));
+        checkBoxStandardUpdate->setText(QApplication::translate("MainWindow", "Standard: $100", nullptr));
+        checkBoxPremiemUpdate->setText(QApplication::translate("MainWindow", "Premiem: $200", nullptr));
+        checkBoxProUpdate->setText(QApplication::translate("MainWindow", "Pro: $300", nullptr));
+        btncreatePage->setText(QApplication::translate("MainWindow", "Back", nullptr));
+        radioButtonKeyUpdate->setText(QApplication::translate("MainWindow", "Key Member", nullptr));
     } // retranslateUi
 
 };

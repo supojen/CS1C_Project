@@ -19,10 +19,14 @@ public:
     //* Read the customer information from the database. *//
     //* And store them in QSqlQueryModel* object.        *//
     QSqlQueryModel* loadEntries();
+
+    QSqlQueryModel* loadKeyEntries();
+
     //* Read one customer information from the database, *//
     //* according to the giving name.                    *//
     //* And store them in CustomerEntry* object.         *//
     CustomerEntry* getEntryFromName(QString name);
+
     //* Read the customer name from the database,        *//
     //* according to QModelIndex object                  *//
     QString getCustomerNameFromQModelIndex(const QModelIndex &index);
@@ -68,7 +72,6 @@ private:
     QString convertProductsToString(QStringList products);
     QStringList convertProductsFromString(QString productsStr);
 };
-
 
 
 

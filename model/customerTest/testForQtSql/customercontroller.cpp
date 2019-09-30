@@ -59,7 +59,24 @@ QSqlQueryModel *CustomerController::loadEntries()
     QSqlQueryModel* model = new QSqlQueryModel();
 
     QSqlQuery qry;
-    qry.prepare("select * from customer;");
+    qry.prepare("select * from customer order by name;");
+    if(!qry.exec())
+    {
+        qDebug() <<"error Loading values to db" << endl;
+
+    }
+
+    model->setQuery(qry);
+
+    return model;
+}
+
+QSqlQueryModel *CustomerController::loadKeyEntries()
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+
+    QSqlQuery qry;
+    qry.prepare("select * from customer where key = \'Key\' order by name;");
     if(!qry.exec())
     {
         qDebug() <<"error Loading values to db" << endl;

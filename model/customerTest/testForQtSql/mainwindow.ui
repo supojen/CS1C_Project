@@ -15,38 +15,13 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+    <item row="0" column="1">
      <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
       <widget class="QWidget" name="PageCreate">
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="5" column="0">
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
-          <item>
-           <widget class="QLabel" name="label_5">
-            <property name="text">
-             <string>credit         </string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QTextEdit" name="textCredit"/>
-          </item>
-         </layout>
-        </item>
-        <item row="2" column="0">
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <item>
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>username  </string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QTextEdit" name="textUsername"/>
-          </item>
-         </layout>
-        </item>
         <item row="3" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_4">
           <item>
@@ -75,6 +50,45 @@
           </item>
          </layout>
         </item>
+        <item row="8" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_11">
+          <item>
+           <widget class="QPushButton" name="btnConfirm">
+            <property name="text">
+             <string>Confirm</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnListPage_KeyMember">
+            <property name="text">
+             <string>List Key Member Only</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnListPage">
+            <property name="text">
+             <string>List All</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>username  </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTextEdit" name="textUsername"/>
+          </item>
+         </layout>
+        </item>
         <item row="4" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_5">
           <item>
@@ -90,10 +104,33 @@
          </layout>
         </item>
         <item row="6" column="0">
-         <widget class="QPushButton" name="btnListPage">
-          <property name="text">
-           <string>List All</string>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>products</string>
           </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_12">
+           <item>
+            <widget class="QCheckBox" name="checkBoxStandardAdd">
+             <property name="text">
+              <string>standard</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="checkBoxPremiemAdd">
+             <property name="text">
+              <string>premiem</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="checkBoxProAdd">
+             <property name="text">
+              <string>pro</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </item>
         <item row="1" column="0">
@@ -110,157 +147,180 @@
           </item>
          </layout>
         </item>
+        <item row="5" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>credit         </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTextEdit" name="textCredit"/>
+          </item>
+         </layout>
+        </item>
         <item row="7" column="0">
-         <widget class="QPushButton" name="btnConfirm">
+         <widget class="QRadioButton" name="radioButtonKeyCreate">
           <property name="text">
-           <string>Confirm</string>
+           <string>Key Member</string>
           </property>
          </widget>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="PageList">
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>340</y>
-          <width>591</width>
-          <height>250</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout">
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="5" column="0" colspan="3">
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <item>
+             <widget class="QLabel" name="labelAddressListPage">
+              <property name="text">
+               <string>Address</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTextEdit" name="textAddressListPage"/>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <item>
+             <widget class="QLabel" name="labelRatingListPage">
+              <property name="text">
+               <string>rating    </string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTextEdit" name="textRatingListPage"/>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_9"/>
+          </item>
+         </layout>
+        </item>
+        <item row="6" column="1">
+         <widget class="QPushButton" name="btnDelete">
+          <property name="text">
+           <string>Delete</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="2">
+         <widget class="QPushButton" name="btnUpdate">
+          <property name="text">
+           <string>Update</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="3">
+         <widget class="QLabel" name="labelCustomerName">
+          <property name="text">
+           <string>Name</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" colspan="3">
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="font">
+           <font>
+            <family>Comic Sans MS</family>
+            <pointsize>14</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="title">
+           <string>Products</string>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_13">
            <item>
-            <widget class="QLabel" name="labelAddressListPage">
+            <widget class="QCheckBox" name="checkBoxStandardUpdate">
              <property name="text">
-              <string>Address</string>
+              <string>Standard: $100</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QTextEdit" name="textAddressListPage"/>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_8">
-           <item>
-            <widget class="QLabel" name="labelRatingListPage">
+            <widget class="QCheckBox" name="checkBoxPremiemUpdate">
              <property name="text">
-              <string>rating    </string>
+              <string>Premiem: $200</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QTextEdit" name="textRatingListPage"/>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_9">
-           <item>
-            <widget class="QLabel" name="labelKeyListPage">
+            <widget class="QCheckBox" name="checkBoxProUpdate">
              <property name="text">
-              <string>key        </string>
+              <string>Pro: $300</string>
              </property>
             </widget>
            </item>
-           <item>
-            <widget class="QTextEdit" name="textKeyListPage"/>
-           </item>
           </layout>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>600</y>
-          <width>591</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_10">
-         <item>
-          <widget class="QPushButton" name="btncreatePage">
-           <property name="text">
-            <string>Back</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnUpdate">
-           <property name="text">
-            <string>Update</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnDelete">
-           <property name="text">
-            <string>Delete</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>2</x>
-          <y>12</y>
-          <width>591</width>
-          <height>291</height>
-         </rect>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_3">
-         <item row="0" column="0" rowspan="2" colspan="2">
-          <widget class="QTableView" name="tableView"/>
-         </item>
-         <item row="0" column="2">
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="1" column="1">
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QLabel" name="labelCustomerName">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>310</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QPushButton" name="btncreatePage">
+          <property name="text">
+           <string>Back</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" rowspan="2" colspan="3">
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0" rowspan="2" colspan="2">
+           <widget class="QTableView" name="tableView">
+            <property name="minimumSize">
+             <size>
+              <width>50</width>
+              <height>200</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="1">
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item row="4" column="0">
+         <widget class="QRadioButton" name="radioButtonKeyUpdate">
+          <property name="text">
+           <string>Key Member</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>

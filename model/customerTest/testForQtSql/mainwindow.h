@@ -26,6 +26,8 @@ public slots:
 private slots:
     void on_tableView_activated(const QModelIndex &index);
 
+    void on_btnListPage_KeyMember_clicked();
+
 private:
     Ui::MainWindow *ui;
     CustomerController *m_controller;
