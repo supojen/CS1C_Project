@@ -6,6 +6,7 @@
 #include "customerentry.h"
 
 
+
 class CustomerController : public QObject
 {
     Q_OBJECT
