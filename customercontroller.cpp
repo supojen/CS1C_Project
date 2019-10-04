@@ -24,8 +24,7 @@ void CustomerController::createTable()
     // About creating the table
     QString query =
     "create table customer(                                        "
-    "id              integer primary key  autoincrement not null,  "
-    "name            varchar(50),                                  "
+    "name            varchar(50) primary key,                      "
     "address         varchar(50),                                  "
     "rating          varchar(50),                                  "
     "product         varchar(50),                                  "
@@ -226,7 +225,9 @@ void CustomerController::updateEntry(QString name,
         //qDebug() <<"error updating values to db" << endl;
         qDebug() << qry.lastError().text() << endl;
 
-    }
+    }else {
+            qDebug() <<"Customer is added successfully" << endl;
+         }
 
 
 }
