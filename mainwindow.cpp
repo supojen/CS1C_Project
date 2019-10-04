@@ -7,7 +7,8 @@ MainWindow::MainWindow(CustomerController* controller,QWidget *parent) :
     m_controller(controller)
 {
     ui->setupUi(this);
-    settingConnection();
+    setupconnections();
+    ui->stackedWidget->setCurrentWidget(ui->homePage);
 }
 
 MainWindow::~MainWindow()
@@ -29,26 +30,19 @@ void MainWindow::deleteEntry()
 {
     m_controller->deleteEntry(ui->labelCustomerName->text());
     showCustomerList(m_controller->loadEntries());
+    ui->textAddressListPage->clear();
+    ui->textRatingListPage->clear();
+    ui->textKeyListPage->clear();
+    ui->labelCustomerName->clear();
 }
 
-/*    void updateEntry(QString        name,
-                     QString        address,
-                     QString        rating,
-                     QString        key,
-                     QStringList products,
-                     bool           getPamphlet);
-    ui->textAddressListPage->setPlainText(entry->getAddress());
-    ui->textRatingListPage->setPlainText(entry->getRating());
-    ui->textKeyListPage->setPlainText(entry->getKey());
-*/
+
 void MainWindow::updateEntry()
 {
-    //ui->textAddressListPage->toPlainText();
-    //ui->textRatingListPage->toPlainText();
-    //ui->textKeyListPage->toPlainText();
 
     CustomerEntry *entry;
     entry = m_controller->getEntryFromName(ui->labelCustomerName->text());
+
     m_controller->updateEntry(entry->getName(),
                               ui->textAddressListPage->toPlainText(),
                               ui->textRatingListPage->toPlainText(),
@@ -56,16 +50,24 @@ void MainWindow::updateEntry()
                               entry->getProducts(),
                               entry->getGetPamphlet());
     showCustomerList(m_controller->loadEntries());
+
+    ui->textAddressListPage->clear();
+    ui->textRatingListPage->clear();
+    ui->textKeyListPage->clear();
+    ui->textName->clear();
+    ui->textAddress->clear();
+    ui->textKey->clear();
+    ui->textRating->clear();
 }
 
 /**
  * @brief MainWindow::changePageListPage
  *    Changeing page
  */
-void MainWindow::changePageListPage()
+void MainWindow::changedatabasePage()
 {
     showCustomerList(m_controller->loadEntries());
-    ui->stackedWidget->setCurrentWidget(ui->PageList);
+    ui->stackedWidget->setCurrentWidget(ui->databasepage);
 }
 
 /**
@@ -75,29 +77,6 @@ void MainWindow::changePageListPage()
 void MainWindow::changePageCreatePage()
 {
     ui->stackedWidget->setCurrentWidget(ui->PageCreate);
-}
-
-/**
- * @brief MainWindow::settingConnection
- *      This function set up the connection.
- */
-void MainWindow::settingConnection()
-{
-    connect(ui->btnListPage,&QPushButton::clicked,
-            this,&MainWindow::changePageListPage);
-
-    connect(ui->btncreatePage,&QPushButton::clicked,
-            this,&MainWindow::changePageCreatePage);
-
-    connect(ui->btnConfirm,&QPushButton::clicked,
-            this,&MainWindow::createEntry);
-
-    connect(ui->btnDelete,&QPushButton::clicked,
-            this,&MainWindow::deleteEntry);
-
-    connect(ui->btnUpdate,&QPushButton::clicked,
-            this,&MainWindow::updateEntry);
-
 }
 
 /**
@@ -130,6 +109,46 @@ void MainWindow::on_tableView_activated(const QModelIndex &index)
 }
 
 
+// After submitting, we update existing customer's pamphletSent or if they don't exist, we add a new customer
+void MainWindow::pamphletSent()
+{
+    // NEW CUSTOMER
+    m_controller->createEntry(
+                 ui->pamphletNameText->text(),
+                 ui->pamphletAddressText->text(),
+                 "",
+                 "",
+                 QStringList(),
+                 true);
+
+                 ui->stackedWidget->setCurrentWidget(ui->homePage);
+                 QMessageBox::critical(this, tr("Message"), tr ("Pamphlet Sent"));
+
+}
+
+void MainWindow::buyingProduct()
+{
+
+    QStringList products;
+        if(ui->checkboxbronzeAdd->isChecked())
+            products.append("Bronze");
+        if(ui->checkboxsilverAdd->isChecked())
+            products.append("Silver");
+        if(ui->checkboxgoldAdd->isChecked())
+            products.append("Gold");
+
+    m_controller->createEntry(
+                     ui->cartNameText->toPlainText(),
+                     ui->cartAddressText->toPlainText(),
+                     "",
+                     "",
+                     QStringList(products),
+                false);
+    ui->checkboxbronzeAdd->setChecked(false);
+    ui->checkboxsilverAdd->setChecked(false);
+    ui->checkboxgoldAdd->setChecked(false);
+}
+
 void MainWindow::changepageToContactUs()
 {
     ui->stackedWidget->setCurrentWidget(ui->Contactpage);
@@ -158,6 +177,24 @@ void MainWindow::changetohelppage()
 {
     ui->stackedWidget->setCurrentWidget(ui->Helppage);
 }
+
+void MainWindow::changeToPamphletPages()
+{
+    ui->stackedWidget->setCurrentWidget(ui->pamphletPage);
+}
+void MainWindow::changetoadminpage()
+{
+    ui->stackedWidget->setCurrentWidget(ui->Adminpage);
+}
+void MainWindow::changetologinpage()
+{
+    ui->stackedWidget->setCurrentWidget(ui->Loginpage);
+}
+
+/**
+ * @brief MainWindow::settingConnection
+ *      This function set up the connection.
+ */
 void MainWindow::setupconnections()
 {
     connect(ui->Contactus,&QPushButton::clicked,this,&MainWindow::changepageToContactUs);
@@ -165,11 +202,38 @@ void MainWindow::setupconnections()
     connect(ui->Buynow,&QPushButton::clicked,this,&MainWindow::changepagetobuynow);
     connect(ui->backbutton,&QPushButton::clicked,this,&MainWindow::changePageToHome);
     connect(ui->cartButton,&QPushButton::clicked,this,&MainWindow::changetoGuaranteepage);
-    connect(ui->cancelbutton,&QPushButton::clicked,this,&MainWindow::changePageToHome);
+    connect(ui->cartCancelBtn, &QPushButton::clicked,this,&MainWindow::changePageToHome);
     connect(ui->declinebutton,&QPushButton::clicked,this,&MainWindow::changePageToHome);
     connect(ui->Acknowledgebutton,&QPushButton::clicked,this,&MainWindow::changetocartpage);
     connect(ui->Customerreviewsbutton,&QPushButton::clicked,this,&MainWindow::changetocustomerreviewspage);
     connect(ui->closebtn,&QPushButton::clicked,this,&MainWindow::changePageToHome);
     connect(ui->Helpbutton,&QPushButton::clicked,this,&MainWindow::changetohelppage);
     connect(ui->helphomebtn,&QPushButton::clicked,this,&MainWindow::changePageToHome);
+    connect(ui->btnConfirm,&QPushButton::clicked,this,&MainWindow::createEntry);
+    connect(ui->btnDelete,&QPushButton::clicked,this,&MainWindow::deleteEntry);
+    connect(ui->btnConfirm,&QPushButton::clicked,this,&MainWindow::updateEntry);
+    connect(ui->backpushbtn,&QPushButton::clicked,this,&MainWindow::changePageToHome);
+    connect(ui->loginpushbtn,&QPushButton::clicked,this,&MainWindow::changetoadminpage);
+    connect(ui->Loginbutton,&QPushButton::clicked,this,&MainWindow::changetologinpage);
+    connect(ui->homedatabasebtn,&QPushButton::clicked,this,&MainWindow::changePageToHome);
+    connect(ui->databasebtn,&QPushButton::clicked,this,&MainWindow::changedatabasePage);
+    connect(ui->backtoadminpage,&QPushButton::clicked,this,&MainWindow::changetoadminpage);
+    connect(ui->backbtntoadmin,&QPushButton::clicked,this,&MainWindow::changetoadminpage);
+    connect(ui->addtodatabase,&QPushButton::clicked,this,&MainWindow::changePageCreatePage);
+    connect(ui->btnUpdate,&QPushButton::clicked,this,&MainWindow::updateEntry);
+
+    // connects pamphlet page
+    connect(ui->requestCopyBtns,&QPushButton::clicked,this,&MainWindow::changeToPamphletPages);
+    // goes back home from pamphlet page
+    connect(ui->pamphletBackBtn,&QPushButton::clicked,this,&MainWindow::changePageToHome);
+    // connects submit button, adds new customer to database
+    connect(ui->pamphletSubmitBtn,&QPushButton::clicked,this,&MainWindow::pamphletSent);
+
+    connect(ui->cartBuyBtn,&QPushButton::clicked, this, &MainWindow::buyingProduct);
+
+
+
 }
+
+
+
