@@ -59,3 +59,4 @@ private:
 };
 
 #endif // CUSTOMERENTRY_H
+
