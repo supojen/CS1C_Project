@@ -87,3 +87,31 @@ void MainWindow::on_cartButton_clicked()
         QMessageBox::warning(this, "Error", "Please check a product");
     }
 }
+
+/***********************************************************************
+ *on_pamphletSubmitBtn_clicked() -
+ *  Takes place before customer offically requests a copy.
+ *  Checks to see that customer filled in information before requesting
+ *  a copy. If true, then the customer's info will be stored into database
+ **********************************************************************/
+void MainWindow::on_pamphletSubmitBtn_clicked()
+{
+    QString name = ui->pamphletNameText->text();
+    QString address = ui->pamphletAddressText->text();
+
+    // PROCESSING- Checks to see if every box was filled in or not
+    if(name == "" || address == "")
+    {
+        // Displays an error message if at least one of the boxes weren't filled
+        QMessageBox::warning(this, "Error", "Please fill in each box");
+    }
+    else
+    {
+        // If all of them are filled, then adds customer info to database (calls pamphletSent())
+        QMessageBox::information(this, "Pamphlet Sent", "The copy of the pamphlet has been sent");
+        pamphletSent();
+        ui->pamphletNameText->setText("");
+        ui->pamphletAddressText->setText("");
+        changePageToHome();
+    }
+}
