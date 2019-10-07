@@ -1,0 +1,99 @@
+//----------------------------------------------------
+// * * * * * * * * * * * * * * * * * * * * * * * * * *
+//----------------------------------------------------
+
+// Update this public function in CustomerController.h
+//----------------------------------------------------
+QSqlQueryModel* loadEntries();
+
+// Update this public function in CustomerController.cpp
+//------------------------------------------------------
+QSqlQueryModel *CustomerController::loadEntries()
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+
+    QSqlQuery qry;
+    qry.prepare("select * from customer order by name;");
+    if(!qry.exec())
+    {
+        qDebug() <<"error Loading values to db" << endl;
+
+    }
+
+    model->setQuery(qry);
+
+    return model;
+}
+
+
+
+
+//----------------------------------------------------
+// * * * * * * * * * * * * * * * * * * * * * * * * * *
+//----------------------------------------------------
+
+// Adding this public function in CustomerController.h
+//----------------------------------------------------
+QSqlQueryModel* loadKeyEntries();
+
+// Adding this public function in CustomerController.cpp
+//-----------------------------------------------------
+QSqlQueryModel *CustomerController::loadKeyEntries()
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+
+    QSqlQuery qry;
+    qry.prepare("select * from customer where key = \'Key\' order by name;");
+    if(!qry.exec())
+    {
+        qDebug() <<"error Loading values to db" << endl;
+
+    }
+
+    model->setQuery(qry);
+
+    return model;
+}
+
+
+
+
+//----------------------------------------------------
+// * * * * * * * * * * * * * * * * * * * * * * * * * *
+//----------------------------------------------------
+
+
+// Adding this public function in CustomerController.h
+//----------------------------------------------------
+QString getEntryCost(QString name);
+
+// Adding this public function in CustomerController.cpp
+//------------------------------------------------------
+QString CustomerController::getEntryCost(QString name)
+{
+    QString result;
+    CustomerEntry* entry;
+    int totalCost;
+
+    result = "";
+    totalCost = 0;
+    entry = getEntryFromName(name);
+    for(auto &item: entry->getProducts())
+    {
+        if(item == "Sta") {
+            totalCost += 100;
+            result += "Standard:   $100\n";
+        }
+        else if(item == "Pre") {
+            totalCost += 200;
+            result += "Premiem:    $200\n";
+        }
+        else if(item == "Pro") {
+            totalCost += 300;
+            result += "Profession: $300\n";
+        }
+    }
+    result += "Total:      " + QString::number(totalCost) + "\n";
+
+    return result;
+}
