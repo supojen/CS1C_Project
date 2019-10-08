@@ -27,6 +27,9 @@ public:
     //* Read the customer name from the database,        *//
     //* according to QModelIndex object                  *//
     QString getCustomerNameFromQModelIndex(const QModelIndex &index);
+    QSqlQueryModel* loadEntriessorted();
+    QSqlQueryModel* loadEntrieskeysorted();
+    QSqlQueryModel* loadEntriesproductssorted();
 
     //********************** CREATE **********************//
     void createEntry(QString        name,
@@ -65,4 +68,3 @@ private:
 
 
 #endif // CUSTOMERCONTROLLER_H
-
