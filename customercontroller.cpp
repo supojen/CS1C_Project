@@ -43,9 +43,9 @@ void CustomerController::createTable()
 
 /**
  * @brief CustomerController::loadEntries
- *      Load the customer information from database to QSqlQueryModel.
+ *        Load the customer information from database to QSqlQueryModel.
  * @return
- *      QSqlQueyModel that contain the customers' informations.
+ *        QSqlQueyModel that contain the customers' informations.
  */
 QSqlQueryModel *CustomerController::loadEntries()
 {
@@ -63,6 +63,58 @@ QSqlQueryModel *CustomerController::loadEntries()
 
     return model;
 }
+
+QSqlQueryModel *CustomerController::loadEntriessorted()
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+
+    QSqlQuery qry;
+    qry.prepare("select * from customer order by name;");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"error Loading values to db" << endl;
+
+    }
+    model->setQuery(qry);
+
+    return model;
+}
+
+QSqlQueryModel *CustomerController::loadEntrieskeysorted()
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+
+    QSqlQuery qry;
+    qry.prepare("select * from customer where key = \'key\' order by name;");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"error Loading values to db" << endl;
+
+    }
+    model->setQuery(qry);
+
+    return model;
+}
+
+QSqlQueryModel *CustomerController::loadEntriesproductssorted()
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+
+    QSqlQuery qry;
+    qry.prepare("select * from customer where not product =\"\" order by name;");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"error Loading values to db" << endl;
+
+    }
+    model->setQuery(qry);
+
+    return model;
+}
+
 
 
 /**
@@ -160,7 +212,7 @@ void CustomerController::createEntry(QString name,
 
 
 /**
- * @brief CustomerController::deleteEntry
+ * @brief   CustomerController::deleteEntry
  *          This function will help us delete the entry
  * @param name
  *          Representing the customer's name which you want to delete.
@@ -182,7 +234,7 @@ void CustomerController::deleteEntry(QString name)
 
 /**
  * @brief CustomerController::updateEntry
- *      This function update the customer's informations.
+ *        This function update the customer's informations.
  * @param name
  * @param address
  * @param rating
@@ -235,7 +287,7 @@ void CustomerController::updateEntry(QString name,
 
 /**
  * @brief CustomerController::convertProductsToString
- *      This fuction convert QListString to QString.
+ *        This fuction convert QListString to QString.
  * @param products
  * @return
  */
@@ -250,7 +302,7 @@ QString CustomerController::convertProductsToString(QStringList products)
 
 /**
  * @brief CustomerController::convertProductsToString
- *      This fuction convert QString to QListString.
+ *        This fuction convert QString to QListString.
  * @param products
  * @return
  */
