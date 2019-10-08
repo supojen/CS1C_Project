@@ -122,7 +122,6 @@ void MainWindow::pamphletSent()
                  true);
 
                  ui->stackedWidget->setCurrentWidget(ui->homePage);
-                 QMessageBox::critical(this, tr("Message"), tr ("Pamphlet Sent"));
 
 }
 
@@ -188,7 +187,29 @@ void MainWindow::changetoadminpage()
 }
 void MainWindow::changetologinpage()
 {
+
     ui->stackedWidget->setCurrentWidget(ui->Loginpage);
+}
+
+
+
+void MainWindow::on_loginpushbtn_clicked()
+{
+    QString username = ui->usernamelineedit->text();
+        QString password = ui->passwordlineedit->text();
+
+        if(username == "admin" && password == "admin")
+        {
+            changetoadminpage();
+        }
+        else
+        {
+            QMessageBox::warning(this, "Login", "Username or password is not correct");
+        }
+
+        // Sets the username and password back to its empty state
+        ui->usernamelineedit->setText("");
+        ui->passwordlineedit->setText("");
 }
 
 /**
@@ -201,7 +222,6 @@ void MainWindow::setupconnections()
     connect(ui->Homebutton,&QPushButton::clicked,this,&MainWindow::changePageToHome);
     connect(ui->Buynow,&QPushButton::clicked,this,&MainWindow::changepagetobuynow);
     connect(ui->backbutton,&QPushButton::clicked,this,&MainWindow::changePageToHome);
-    connect(ui->cartButton,&QPushButton::clicked,this,&MainWindow::changetoGuaranteepage);
     connect(ui->cartCancelBtn, &QPushButton::clicked,this,&MainWindow::changePageToHome);
     connect(ui->declinebutton,&QPushButton::clicked,this,&MainWindow::changePageToHome);
     connect(ui->Acknowledgebutton,&QPushButton::clicked,this,&MainWindow::changetocartpage);
@@ -213,7 +233,6 @@ void MainWindow::setupconnections()
     connect(ui->btnDelete,&QPushButton::clicked,this,&MainWindow::deleteEntry);
     connect(ui->btnConfirm,&QPushButton::clicked,this,&MainWindow::updateEntry);
     connect(ui->backpushbtn,&QPushButton::clicked,this,&MainWindow::changePageToHome);
-    connect(ui->loginpushbtn,&QPushButton::clicked,this,&MainWindow::changetoadminpage);
     connect(ui->Loginbutton,&QPushButton::clicked,this,&MainWindow::changetologinpage);
     connect(ui->homedatabasebtn,&QPushButton::clicked,this,&MainWindow::changePageToHome);
     connect(ui->databasebtn,&QPushButton::clicked,this,&MainWindow::changedatabasePage);
@@ -226,14 +245,86 @@ void MainWindow::setupconnections()
     connect(ui->requestCopyBtns,&QPushButton::clicked,this,&MainWindow::changeToPamphletPages);
     // goes back home from pamphlet page
     connect(ui->pamphletBackBtn,&QPushButton::clicked,this,&MainWindow::changePageToHome);
-    // connects submit button, adds new customer to database
-    connect(ui->pamphletSubmitBtn,&QPushButton::clicked,this,&MainWindow::pamphletSent);
-
-    connect(ui->cartBuyBtn,&QPushButton::clicked, this, &MainWindow::buyingProduct);
-
-
 
 }
 
 
+void MainWindow::on_cartBuyBtn_clicked()
+{
+    // INPUT - Gets each text edits' information
+    QString nameText = ui->cartNameText->toPlainText();
+    QString addressText = ui->cartAddressText->toPlainText();
+    QString emailText = ui->cartEmailText->toPlainText();
 
+    // PROCESSING- Checks to see if every box was filled in or not
+    if(nameText == "" || addressText == "" || emailText == "")
+    {
+        // Displays an error message if at least one of the boxes weren't filled
+        QMessageBox::warning(this, "Error", "Please fill in each box");
+    }
+    else
+    {
+        // If all of them are filled, in, a message will pop up, and buyingProduct()
+        // function will be called
+        QMessageBox::information(this, "Purchased", "Thank you for your purchase");
+        changePageToHome();
+        buyingProduct();
+        ui->cartNameText->setText("");
+        ui->cartAddressText->setText("");
+        ui->cartEmailText->setText("");
+    }
+}
+
+void MainWindow::on_cartButton_clicked()
+{
+    bool goldBoxChecked = ui->checkboxgoldAdd->isChecked();
+    bool silverBoxChecked = ui->checkboxsilverAdd->isChecked();
+    bool bronzeBoxChecked = ui->checkboxbronzeAdd->isChecked();
+
+    if(goldBoxChecked == true || silverBoxChecked == true || bronzeBoxChecked == true)
+    {
+        changetoGuaranteepage();
+    }
+    else
+    {
+        QMessageBox::warning(this, "Error", "Please check a product");
+    }
+}
+
+void MainWindow::on_pamphletSubmitBtn_clicked()
+{
+    QString name = ui->pamphletNameText->text();
+    QString address = ui->pamphletAddressText->text();
+
+    // PROCESSING- Checks to see if every box was filled in or not
+    if(name == "" || address == "")
+    {
+        // Displays an error message if at least one of the boxes weren't filled
+        QMessageBox::warning(this, "Error", "Please fill in each box");
+    }
+    else
+    {
+        // If all of them are filled, then adds customer info to database (calls pamphletSent())
+        QMessageBox::information(this, "Pamphlet Sent", "The copy of the pamphlet has been sent");
+        pamphletSent();
+        ui->pamphletNameText->setText("");
+        ui->pamphletAddressText->setText("");
+        changePageToHome();
+    }
+}
+
+void MainWindow::on_sortBtn_clicked()
+{
+    showCustomerList(m_controller->loadEntriessorted());
+}
+
+
+void MainWindow::on_keyCustomersBtn_clicked()
+{
+    showCustomerList(m_controller->loadEntrieskeysorted());
+}
+
+void MainWindow::on_productsBtn_clicked()
+{
+    showCustomerList(m_controller->loadEntriesproductssorted());
+}
