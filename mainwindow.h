@@ -39,15 +39,28 @@ public slots:
     void buyingProduct();
 
 
+private slots:
+    void on_loginpushbtn_clicked();
+    void on_cartBuyBtn_clicked();
+    void on_cartButton_clicked();
+    void on_pamphletSubmitBtn_clicked();
+
+    void on_sortBtn_clicked();
+
+
+    void on_keyCustomersBtn_clicked();
+
+    void on_productsBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     CustomerController *m_controller;
 
     void showCustomerList(QSqlQueryModel *model);
+    void sort(QSqlQueryModel *model);
 
 
 
 };
 
 #endif // MAINWINDOW_H
-
