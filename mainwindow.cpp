@@ -146,6 +146,8 @@ void MainWindow::buyingProduct()
     ui->checkboxbronzeAdd->setChecked(false);
     ui->checkboxsilverAdd->setChecked(false);
     ui->checkboxgoldAdd->setChecked(false);
+
+
 }
 
 void MainWindow::changepageToContactUs()
@@ -222,7 +224,6 @@ void MainWindow::setupconnections()
     connect(ui->Homebutton,&QPushButton::clicked,this,&MainWindow::changePageToHome);
     connect(ui->Buynow,&QPushButton::clicked,this,&MainWindow::changepagetobuynow);
     connect(ui->backbutton,&QPushButton::clicked,this,&MainWindow::changePageToHome);
-    connect(ui->cartCancelBtn, &QPushButton::clicked,this,&MainWindow::changePageToHome);
     connect(ui->declinebutton,&QPushButton::clicked,this,&MainWindow::changePageToHome);
     connect(ui->Acknowledgebutton,&QPushButton::clicked,this,&MainWindow::changetocartpage);
     connect(ui->Customerreviewsbutton,&QPushButton::clicked,this,&MainWindow::changetocustomerreviewspage);
@@ -272,11 +273,16 @@ void MainWindow::on_cartBuyBtn_clicked()
         ui->cartNameText->setText("");
         ui->cartAddressText->setText("");
         ui->cartEmailText->setText("");
+        ui->cartProductOne->clear();
+        ui->cartProductTwo->clear();
+        ui->cartProductThree->clear();
+        ui->totalCart->clear();
     }
 }
 
 void MainWindow::on_cartButton_clicked()
 {
+    int total;
     bool goldBoxChecked = ui->checkboxgoldAdd->isChecked();
     bool silverBoxChecked = ui->checkboxsilverAdd->isChecked();
     bool bronzeBoxChecked = ui->checkboxbronzeAdd->isChecked();
@@ -284,11 +290,71 @@ void MainWindow::on_cartButton_clicked()
     if(goldBoxChecked == true || silverBoxChecked == true || bronzeBoxChecked == true)
     {
         changetoGuaranteepage();
+
+     if (bronzeBoxChecked)
+     {
+         total += 50;
+
+         if(ui->cartProductOne->text()=="")
+         {
+             ui->cartProductOne->setText("Bronze Product  $50");
+
+
+         }else if (ui->cartProductTwo->text()=="")
+         {
+             ui->cartProductTwo->setText("Bronze Product  $50");
+
+         }else
+          {
+            ui->cartProductThree->setText("Bronze Product  $50");
+          }
+     }
+
+     if (silverBoxChecked)
+     {
+         total += 100;
+         if(ui->cartProductOne->text()=="")
+         {
+             ui->cartProductOne->setText("Silver Product  $100");
+
+         }else if (ui->cartProductTwo->text()=="")
+         {
+             ui->cartProductTwo->setText("Silver Product  $100");
+         }else
+          {
+            ui->cartProductThree->setText("Silver Product  $100");
+
+          }
+     }
+
+     if (goldBoxChecked)
+     {
+           total += 200;
+
+         if(ui->cartProductOne->text()=="")
+         {
+             ui->cartProductOne->setText("Gold Product  $200");
+         }else if (ui->cartProductTwo->text()=="")
+         {
+             ui->cartProductTwo->setText("Gold Product  $200");
+         }else
+          {
+            ui->cartProductThree->setText("Gold Product  $200");
+          }
+     }
+
+        ui->totalCart->setNum(total);
+
+
     }
     else
     {
         QMessageBox::warning(this, "Error", "Please check a product");
     }
+
+
+
+
 }
 
 void MainWindow::on_pamphletSubmitBtn_clicked()
@@ -327,4 +393,20 @@ void MainWindow::on_keyCustomersBtn_clicked()
 void MainWindow::on_productsBtn_clicked()
 {
     showCustomerList(m_controller->loadEntriesproductssorted());
+}
+
+void MainWindow::on_cartCancelBtn_clicked()
+{
+   changePageToHome();
+   ui->cartNameText->setText("");
+   ui->cartAddressText->setText("");
+   ui->cartEmailText->setText("");
+   ui->cartProductOne->clear();
+   ui->cartProductTwo->clear();
+   ui->cartProductThree->clear();
+   ui->checkboxbronzeAdd->setChecked(false);
+   ui->checkboxsilverAdd->setChecked(false);
+   ui->checkboxgoldAdd->setChecked(false);
+   ui->totalCart->clear();
+
 }
