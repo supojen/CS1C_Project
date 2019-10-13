@@ -64,4 +64,3 @@ void CustomerEntry::setProducts(const QStringList &products)
 {
     m_products = products;
 }
-
