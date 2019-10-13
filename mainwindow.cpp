@@ -410,3 +410,4 @@ void MainWindow::on_cartCancelBtn_clicked()
    ui->totalCart->clear();
 
 }
+
