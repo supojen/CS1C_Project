@@ -52,6 +52,8 @@ private slots:
 
     void on_productsBtn_clicked();
 
+    void on_cartCancelBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     CustomerController *m_controller;
