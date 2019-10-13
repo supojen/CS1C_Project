@@ -314,3 +314,4 @@ QStringList CustomerController::convertProductsFromString(QString productsStr)
 
     return result;
 }
+
