@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>562</width>
-    <height>601</height>
+    <width>585</width>
+    <height>630</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>7</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="homePage">
        <layout class="QGridLayout" name="gridLayout_4">
@@ -401,11 +401,11 @@ p, li { white-space: pre-wrap; }
          <rect>
           <x>100</x>
           <y>380</y>
-          <width>401</width>
-          <height>18</height>
+          <width>191</width>
+          <height>90</height>
          </rect>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_11">
+        <layout class="QVBoxLayout" name="verticalLayout_11">
          <item>
           <widget class="QLabel" name="cartProductOne">
            <property name="text">
@@ -424,6 +424,32 @@ p, li { white-space: pre-wrap; }
           <widget class="QLabel" name="cartProductThree">
            <property name="text">
             <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>380</y>
+          <width>111</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_11">
+         <item>
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>Total $</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="totalCart">
+           <property name="text">
+            <string>TextLabel</string>
            </property>
           </widget>
          </item>
@@ -1096,7 +1122,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>562</width>
+     <width>585</width>
      <height>22</height>
     </rect>
    </property>
