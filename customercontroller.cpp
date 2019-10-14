@@ -26,7 +26,7 @@ CustomerController::CustomerController(QObject *parent) : QObject(parent)
 *  and a boolean variable (receive pamphlet). If the 
 *  program undergoes an error, it will output a
 *  statement "error creating a table
-/*******************************************************
+*******************************************************/
 void CustomerController::createTable()
 {
 
@@ -69,7 +69,7 @@ void CustomerController::createTable()
 *  If the database or data has trouble storing the
 *  values, it will output "error loading values to
 *  db".
-/*******************************************************
+*******************************************************/
 QSqlQueryModel *CustomerController::loadEntries()
 {
     QSqlQueryModel* model = new QSqlQueryModel();
@@ -97,7 +97,7 @@ QSqlQueryModel *CustomerController::loadEntries()
 *  not key, they will not show on the database. If
 *  the values go through an error, a statement will 
 *  output "error loading values to db".
-/*******************************************************
+*******************************************************/
 QSqlQueryModel *CustomerController::loadEntriessorted()
 {
     QSqlQueryModel* model = new QSqlQueryModel();
@@ -126,7 +126,7 @@ QSqlQueryModel *CustomerController::loadEntriessorted()
 * then the customer won't show on the database. If the
 * values go through an error, a statement will output
 * "error loading values to db".
-/*******************************************************
+*******************************************************/
 QSqlQueryModel *CustomerController::loadEntrieskeysorted()
 {
     QSqlQueryModel* model = new QSqlQueryModel();
@@ -154,7 +154,7 @@ QSqlQueryModel *CustomerController::loadEntrieskeysorted()
 *  not key, they will not show on the database. If
 *  the values go through an error, a statement will 
 *  output "error loading values to db".
-/*******************************************************
+*******************************************************/
 QSqlQueryModel *CustomerController::loadEntriesproductssorted()
 {
     QSqlQueryModel* model = new QSqlQueryModel();
@@ -191,7 +191,7 @@ QSqlQueryModel *CustomerController::loadEntriesproductssorted()
 *  the customer is read, the name, address, rating, key,
 *  product and receivePamphlet variables are then stored
 *  in the CustomerEntry * object.
-/*******************************************************
+*******************************************************/
 CustomerEntry *CustomerController::getEntryFromName(QString name)
 {
     CustomerEntry* entry = new CustomerEntry();
@@ -221,7 +221,7 @@ CustomerEntry *CustomerController::getEntryFromName(QString name)
  *  object. Once the name of the customer is read,
  *  the nameOfCustomer QString variable will be
  *  returned.
- /*******************************************************
+ *******************************************************/
 QString CustomerController::getCustomerNameFromQModelIndex(const QModelIndex &index)
 {
     QSqlTableModel model;
@@ -257,7 +257,7 @@ QString CustomerController::getCustomerNameFromQModelIndex(const QModelIndex &in
 *  the database. If there is an error adding the 
 *  data to the database, then "error adding data" 
 *  will output.
-/*******************************************************
+*******************************************************/
 void CustomerController::createEntry(QString name,
                                      QString address,
                                      QString rating,
@@ -315,7 +315,7 @@ void CustomerController::createEntry(QString name,
  *  "error deleting values to db" will be outputted if
  *  the user either types the name wrong or customer 
  *  does not exist on the list.
- /*******************************************************
+ *******************************************************/
 void CustomerController::deleteEntry(QString name)
 {
     QSqlQuery qry;
@@ -351,7 +351,7 @@ void CustomerController::deleteEntry(QString name)
 *  the variables in the database. If there is an error 
 *  adding the data to the database, then "error adding 
 *  data" will output.
-/*******************************************************
+*******************************************************/
 void CustomerController::updateEntry(QString name,
                                      QString address,
                                      QString rating,
