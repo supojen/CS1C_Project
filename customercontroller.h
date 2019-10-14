@@ -21,7 +21,7 @@ public:
      *  and a boolean variable (receive pamphlet). If the 
      *  program undergoes an error, it will output a
      *  statement "error creating a table
-     /*******************************************************
+      ****************************************************/
     void static createTable();
     
     /*******************************************************
@@ -35,7 +35,7 @@ public:
      *  If the database or data has trouble storing the
      *  values, it will output "error loading values to
      *  db".
-     /*******************************************************
+      ****************************************************/
     QSqlQueryModel* loadEntries();
     
     /*******************************************************
@@ -45,7 +45,7 @@ public:
      *  the customer is read, the name, address, rating, key,
      *  product and receivePamphlet variables are then stored
      *  in the CustomerEntry * object.
-     /*******************************************************
+      ****************************************************/
     CustomerEntry* getEntryFromName(QString name);
   
     /*******************************************************
@@ -55,7 +55,7 @@ public:
      *  object. Once the name of the customer is read,
      *  the nameOfCustomer QString variable will be
      *  returned.
-     /*******************************************************
+      ****************************************************/
     QString getCustomerNameFromQModelIndex(const QModelIndex &index);
     
     /*******************************************************
@@ -68,7 +68,7 @@ public:
      *  alphabetically. If the values go through an 
      *  error, a statement will output "error loading
      *  values to db".
-     /*******************************************************
+      ****************************************************/
     QSqlQueryModel* loadEntriessorted();
     
     /*******************************************************
@@ -81,7 +81,7 @@ public:
      *  not key, they will not show on the database. If
      *  the values go through an error, a statement will 
      *  output "error loading values to db".
-     /*******************************************************
+      ****************************************************/
     QSqlQueryModel* loadEntrieskeysorted();
     
      /*******************************************************
@@ -95,7 +95,7 @@ public:
      * then the customer won't show on the database. If the
      * values go through an error, a statement will output
      * "error loading values to db".
-     /*******************************************************
+      ****************************************************/
     QSqlQueryModel* loadEntriesproductssorted();
 
     /*******************************************************
@@ -108,7 +108,7 @@ public:
      *  the database. If there is an error adding the 
      *  data to the database, then "error adding data" 
      *  will output.
-     /*******************************************************
+      ****************************************************/
     void createEntry(QString        name,
                      QString        address,
                      QString        rating,
@@ -126,22 +126,8 @@ public:
      *  "error deleting values to db" will be outputted if
      *  the user either types the name wrong or customer 
      *  does not exist on the list.
-     /*******************************************************
+      ****************************************************/
     void deleteEntry(QString name);
-
-    /*******************************************************
-     * deleteEntry() -
-     *  This function will help delete a customer from
-     *  the database. The function will ask the user
-     *  which customer is to be deleted via name. The function
-     *  primarily uses a query function prepare and 
-     *  addBindValue().The function will not comply if the 
-     *  customer name does not exist on the list. A statement
-     *  "error deleting values to db" will be outputted if
-     *  the user either types the name wrong or customer 
-     *  does not exist on the list.
-     /*******************************************************
-    //********************** UPDATE **********************//
     
     /*******************************************************
      * updateEntry() -
@@ -153,7 +139,7 @@ public:
      *  the variables in the database. If there is an error 
      *  adding the data to the database, then "error adding 
      *  data" will output.
-     /*******************************************************
+      ****************************************************/
     void updateEntry(QString        name,
                      QString        address,
                      QString        rating,
